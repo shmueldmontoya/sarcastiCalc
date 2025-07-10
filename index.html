@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SarcastiCalc - La Calculadora con Actitud</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <!-- Header con vidas y modo -->
+        <div class="calculator-header">
+            <div class="lives-container">
+                <span class="lives-label">Vidas:</span>
+                <div class="hearts">
+                    <i class="fas fa-heart heart" id="heart1"></i>
+                    <i class="fas fa-heart heart" id="heart2"></i>
+                    <i class="fas fa-heart heart" id="heart3"></i>
+                </div>
+            </div>
+            <div class="mode-indicator" id="modeIndicator">
+                <span class="mode-text">Modo Normal</span>
+            </div>
+        </div>
+
+        <!-- Pantalla principal -->
+        <div class="display-container">
+            <div class="display" id="display">0</div>
+            <div class="expression" id="expression"></div>
+            <div class="message" id="message"></div>
+        </div>
+
+        <!-- Botones de la calculadora -->
+        <div class="buttons-container" id="buttonsContainer">
+            <button class="btn btn-clear" onclick="clearDisplay()">C</button>
+            <button class="btn btn-delete" onclick="deleteLast()">
+                <i class="fas fa-backspace"></i>
+            </button>
+            <button class="btn btn-operator" onclick="appendOperator('%')">%</button>
+            <button class="btn btn-operator" onclick="appendOperator('/')">÷</button>
+            
+            <button class="btn btn-number" onclick="appendNumber('7')">7</button>
+            <button class="btn btn-number" onclick="appendNumber('8')">8</button>
+            <button class="btn btn-number" onclick="appendNumber('9')">9</button>
+            <button class="btn btn-operator" onclick="appendOperator('*')">×</button>
+            
+            <button class="btn btn-number" onclick="appendNumber('4')">4</button>
+            <button class="btn btn-number" onclick="appendNumber('5')">5</button>
+            <button class="btn btn-number" onclick="appendNumber('6')">6</button>
+            <button class="btn btn-operator" onclick="appendOperator('-')">−</button>
+            
+            <button class="btn btn-number" onclick="appendNumber('1')">1</button>
+            <button class="btn btn-number" onclick="appendNumber('2')">2</button>
+            <button class="btn btn-number" onclick="appendNumber('3')">3</button>
+            <button class="btn btn-operator" onclick="appendOperator('+')">+</button>
+            
+            <button class="btn btn-number btn-zero" onclick="appendNumber('0')">0</button>
+            <button class="btn btn-number" onclick="appendNumber('.')">.</button>
+            <button class="btn btn-equals" onclick="calculate()">=</button>
+        </div>
+
+        <!-- Botón de reparar (solo visible en modo caos) -->
+        <button class="btn btn-repair" id="repairBtn" onclick="repairCalculator()" style="display: none;">
+            <i class="fas fa-wrench"></i> Reparar Calculadora
+        </button>
+        
+    </div>
+
+    <!-- Modal de logros -->
+    <div class="achievements-modal" id="achievementsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-trophy"></i> Logros Desbloqueados</h2>
+                <button class="close-btn" onclick="closeAchievements()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Los logros se cargarán dinámicamente aquí -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-reset" onclick="resetProgress()">
+                    <i class="fas fa-redo"></i> Borrar Progreso
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación de logro desbloqueado -->
+    <div class="achievement-notification" id="achievementNotification">
+        <div class="achievement-content">
+            <i class="fas fa-trophy achievement-icon"></i>
+            <div class="achievement-text">
+                <h3 id="achievementTitle">Logro Desbloqueado</h3>
+                <p id="achievementDesc">Descripción del logro</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante para logros -->
+    <button class="floating-btn" id="achievementsBtn" onclick="openAchievements()">
+        <i class="fas fa-trophy"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html> 
